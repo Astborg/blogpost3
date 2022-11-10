@@ -2,7 +2,7 @@
 <div class="post-container">
     <h1>Blog Posts</h1>
     <div class="post-mini-container" > 
-        <div  class="post" v-for="note in notes" :key="note.id" >
+        <div  class="post" v-for="note in newnotes" :key="note.id" >
             <img class="img-post" :src="newImg"> 
             <p class="writer"> {{ note.writer }}</p>
             <p class="headline"> {{ note.headline }}</p>
@@ -13,7 +13,18 @@
 </template>
 
 <script>
-localStorage.get('notes')
+export default{
+    name: 'homePosts',
+   setup(){
+    const newnotes = JSON.parse(localStorage.get('notes'))
+    return {newnotes}
+   }
+} 
+// // Returns new array
+// function addData(key, item) {
+//     // Get current array
+//     let currentData = getData(key);
+
 </script>
 
 <style scoped>
