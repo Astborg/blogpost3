@@ -1,9 +1,10 @@
 <template>
 <div class="post-container">
     <h1>Blog Posts</h1>
-    <div class="post-mini-container" > 
-        <div  class="post" v-for="note in newnotes" :key="note.id" >
-            <img class="img-post" :src="newImg"> 
+    <div class="post-mini-container" v-for="note in newnotes" :key="note.id" > 
+        <div  class="post"  >
+            <button class="delete" @click="deleteBtn(note)">x</button>
+            <img class="img-post" :src="note.img"> 
             <p class="writer"> {{ note.writer }}</p>
             <p class="headline"> {{ note.headline }}</p>
             <p class="blog-text" > {{ note.text }}</p>
@@ -12,29 +13,25 @@
 </div>
 </template>
 
-<script>
-export default{
-    name: 'homePosts',
-   setup(){
-    const newnotes = JSON.parse(localStorage.get('notes'))
-    return {newnotes}
-   }
-} 
-// // Returns new array
-// function addData(key, item) {
-//     // Get current array
-//     let currentData = getData(key);
+<script setup>
+
+let newnotes = JSON.parse(localStorage.getItem('notes'))
+
+    function deleteBtn(note){
+        const notes = localStorage.get('notes')
+        notes.splice(notes.indexOf(note),1) 
+        localStorage.setItem('notes', notes)
+
+    }
 
 </script>
 
 <style scoped>
-
 .post-container{
     width: 50%;  
     text-align: center;
     margin: auto; 
 }
-
 .post{
     display: flex; 
     flex-direction: column; 
@@ -68,8 +65,21 @@ export default{
     padding-right: 15px;  
 }
 .headline{
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: bold; 
 }
 
-
+.delete{
+    border: none; 
+    background-color: white; 
+    border-radius: 100%;
+    width: 20px; 
+    margin-left: 570px;
+    margin-top: 5px; 
+    cursor: pointer; 
+      
+}
+.delete:hover{
+    background-color: rgb(253, 130, 130);
+}
 </style>

@@ -6,65 +6,51 @@
       <br />
       <label for="img">Select image:</label>
       <input
-        type="file"
+        type="text"
         id="img"
-        name="img"
-        accept="image/*"
-        v-on:change="newImg"
-      />
+        name="img" v-model="newImg">
       <br />
       <label for="headline">Headline </label>
       <input v-model="newHeadline" type="text" max="500" />
       <label>Your blogtext: </label>
       <textarea v-model="newNote" name="" id="" cols="30" rows="30"></textarea>
       <button type="submit" @click="addNote" class="button">
-        <router-link to="/" class="link">Post blog</router-link>
+        Post blog
       </button>
     </form>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
+import { useRouter } from 'vue-router';
 
-export default {
-  name: "writePost",
-  setup() {
-    const newImg = ref("/assets/person1.jpg");
-    const newNote = ref("Hej detta är min blog");
-    const newWriter = ref("Josefin Astborg");
-    const newHeadline = ref("Bästa bloggen i världen");
-    const notes = ref([]);
 
-    const addNote = () => {
+    const newImg = ref("");
+    const newNote = ref("");
+    const newWriter = ref("");
+    const newHeadline = ref("");
+    const router = useRouter()
+
+    function getNote(){
+      return JSON.parse(localStorage.getItem("notes"))
+    }
+
+    function addNote(){
+      let notes = getNote()
+
       const note = {
         id: Math.floor(Math.random() * 1000000),
-        writer: newWriter.value,
         img: newImg.value,
+        writer: newWriter.value,
         headline: newHeadline.value,
         text: newNote.value,
-      };
-      notes.value = [...notes.value, note];
+      }
+      notes = [...notes, note]
 
-      localStorage.setItem("notes", JSON.stringify(notes));
-    };
-    return { addNote }
-  },
-};
-
-// // Returns parsed array
-// function getData(key) {
-//     return JSON.parse(localStorage.getItem(key));
-// }
-
-//     // Add an item
-//     currentData.push(item);
-
-// id: Math.floor(Math.random() * 1000000),
-// writer: newWriter.value,
-// img: newImg.value,
-// headline: newHeadline.value,
-// text: newNote.value,
+      localStorage.setItem("notes", JSON.stringify(notes))
+      router.push('/')
+    }
 </script>
 
 <style scoped>
