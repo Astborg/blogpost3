@@ -1,8 +1,8 @@
 <template>
 <div class="post-container">
     <h1>Blog Posts</h1>
-    <div class="post-mini-container" v-for="note in newnotes" :key="note.id" > 
-        <div  class="post"  >
+    <div class="post-mini-container" v-for="note in notes" :key="note.id" > 
+        <div class="post">
             <button class="delete" @click="deleteBtn(note)">x</button>
             <img class="img-post" :src="note.img"> 
             <p class="writer"> {{ note.writer }}</p>
@@ -14,14 +14,19 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
-let newnotes = JSON.parse(localStorage.getItem('notes'))
+const notes = ref([]);
+
+notes.value = JSON.parse(localStorage.getItem('notes'));
 
     function deleteBtn(note){
-        const notes = localStorage.get('notes')
-        notes.splice(notes.indexOf(note),1) 
-        localStorage.setItem('notes', notes)
+        notes.value.splice(notes.value.indexOf(note), 1);
+        localStorage.setItem('notes', JSON.stringify(notes.value));
 
+
+        notes.value = JSON.parse(localStorage.getItem('notes'));
+        console.log(notes.value)
     }
 
 </script>

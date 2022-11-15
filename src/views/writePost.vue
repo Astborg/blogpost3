@@ -25,16 +25,19 @@
 import { ref } from "vue";
 import { useRouter } from 'vue-router';
 
-
     const newImg = ref("");
     const newNote = ref("");
     const newWriter = ref("");
     const newHeadline = ref("");
     const router = useRouter()
 
-    function getNote(){
-      return JSON.parse(localStorage.getItem("notes"))
+    function getNote() {
+    if (localStorage.getItem("notes")) {
+    return JSON.parse(localStorage.getItem("notes"));
     }
+
+    return [];
+  }
 
     function addNote(){
       let notes = getNote()
@@ -48,9 +51,10 @@ import { useRouter } from 'vue-router';
       }
       notes = [...notes, note]
 
-      localStorage.setItem("notes", JSON.stringify(notes))
+      localStorage.setItem("notes",JSON.stringify(notes))
       router.push('/')
     }
+
 </script>
 
 <style scoped>
