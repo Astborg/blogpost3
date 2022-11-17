@@ -1,13 +1,13 @@
 <template>
    <div class="container">
     <div>
-      <img class="img" src="@/assets/bloglogo.jpg">
+      <img class="w-28 pl-5 pt-5" src="@/assets/bloglogo.jpg">
     </div>
-    <div class="nav-div">
-        <navbar class="nav">
-                <ul class="navbar">
-                    <router-link active-class="active" to="/" class="li">Home</router-link>
-                    <router-link active-class="active" to="/writePost" class="li">Write a post</router-link>
+    <div class="bg-slate-100 w-screen">
+        <navbar>
+                <ul class="m-auto list-none flex justify-center ">
+                    <router-link active-class="font-bold" to="/" class="bg-slate-100 rounded-full p-2.5 m-2.5 cursor-pointer list-none text-black hover:bg-green-400  ">Home</router-link>
+                    <router-link active-class="font-bold" to="/writePost" class="bg-slate-100 rounded-full  p-2.5 m-2.5 cursor-pointer list-none text-black hover:bg-green-400 ">Write a post</router-link>
                 </ul>
         </navbar>
     </div>   
@@ -17,36 +17,3 @@
  import { RouterLink } from 'vue-router';
 
 </script>
-<style>
-.active {
-  font-weight: bold; 
-}
-.img{
-  width: 100px; 
-  padding-left: 20px;
-  padding-top: 20px; 
-}
-.nav-div{
-    background-color: rgb(232, 232, 229); 
-}
-.navbar{
-    margin: auto; 
-    list-style: none;
-    display: flex; 
-    justify-content: center;
-    
-}
-.li{
-    background-color: rgb(232, 232, 229); 
-    border-radius: 50px; 
-    padding: 10px; 
-    margin: 10px;  
-    cursor: pointer; 
-    list-style: none;
-    color: black; 
-    text-decoration: none; 
-}
-.li:hover{
-    background-color: rgb(162, 232, 162);
-}
-</style>
