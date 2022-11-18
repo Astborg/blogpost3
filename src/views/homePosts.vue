@@ -15,6 +15,7 @@
 </div>
 <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
+    <div v-if="notes.length">
     <div v-for="(note, index) in notes" 
     :key="note.id" 
     class="border-2 border-slate-100 rounded-3xl hover:border-red-400"
@@ -28,6 +29,9 @@
         </div>
     </div>
 </div>
+<div v-else class="text-5xl"> Welcome Write A New Post!</div>
+</div>
+
 </template>
 
 <script setup>
