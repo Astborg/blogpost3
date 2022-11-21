@@ -1,59 +1,67 @@
 <template>
-    <div >
+  <div>
     <div v-if="showModal" @click="showModal = false">
-    <div class="relative w-screen h-screen bg-black opacity-75 z-10 flex cursor-pointer items-center justify-center"  >
-        <div  v-for="(note, index) in notes" 
-        :key="note.id" class="">
-        
-        <div v-if="selectedIndex === index" class="bg-white items-center justify-center opacity-100 p-8 m-20 rounded-xl  ">
+      <div
+        class="relative w-screen h-screen bg-black opacity-75 z-10 flex cursor-pointer items-center justify-center"
+      >
+        <div v-for="(note, index) in notes" :key="note.id" class="">
+          <div
+            v-if="selectedIndex === index"
+            class="bg-white items-center justify-center opacity-100 p-8 m-20 rounded-xl"
+          >
             <p class="text-center font-bold text-3xl">{{ note.headline }}</p>
             <p class="font-semibold text-2xl">{{ note.text }}</p>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
-</div>
-</div>
-<div class="w-6/12 text-center m-auto">
+  </div>
+  <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
-    <div v-if="notes.length">
-    <div v-for="(note, index) in notes" 
-    :key="note.id" 
-    class="border-2 border-slate-100 rounded-3xl hover:border-red-400"
-    @click="selectedIndex = index"> 
-        <div class="relative flex flex-col m-0 justify-around cursor-pointer">
-            <button class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full hover:bg-red-400 p-2.5" @click="deleteBtn(note)">x</button>
-            <img class="w-24 h-24 p-3.5 rounded-full" :src="note.img"> 
-            <p class="text-xs text-right pr-3.5"> {{ note.writer }}</p>
-            <p class="text-lg font-bold"> {{ note.headline }}</p>
-            <p @click="showModal = true" class="text-left p-3.5 text-sm"> {{ note.text }}</p>
-        </div>
-    </div>
-</div>
-<div v-else class="text-5xl"> Welcome Write A New Post!</div>
-</div>
 
+    <div v-if="notes.length">
+      <draggable @start="drag=true" @end="drag=false" group="my-group">
+        <div
+          v-for="(note, index) in notes"
+          :key="note.id"
+          class="border-2 border-slate-100 rounded-3xl hover:border-red-400"
+          @click="selectedIndex = index"
+          >
+          <div class="relative flex flex-col m-0 justify-around cursor-pointer">
+            <button
+              class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full hover:bg-red-400 p-2.5"
+              @click="deleteBtn(note)"
+            >x</button>
+            <img class="w-24 h-24 p-3.5 rounded-full" :src="note.img" />
+            <p class="text-xs text-right pr-3.5">{{ note.writer }}</p>
+            <p class="text-lg font-bold">{{ note.headline }}</p>
+            <p @click="showModal = true" class="text-left p-3.5 text-sm">
+              {{ note.text }}
+            </p>
+          </div>
+        </div>
+      </draggable>
+    </div>
+    <div v-else class="text-5xl">Welcome Write A New Post!</div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
+import { draggable } from "vuedraggable";
 
 const notes = ref([]);
-const selectedIndex = ref(null)
-const showModal = ref(false)
+const selectedIndex = ref(null);
+const showModal = ref(false);
 
-notes.value = JSON.parse(localStorage.getItem('notes'));
+notes.value = JSON.parse(localStorage.getItem("notes"));
 
-    function deleteBtn(note){
-        notes.value.splice(notes.value.indexOf(note), 1);
-        localStorage.setItem('notes', JSON.stringify(notes.value));
+function deleteBtn(note) {
+  notes.value.splice(notes.value.indexOf(note), 1);
+  localStorage.setItem("notes", JSON.stringify(notes.value));
 
-
-        notes.value = JSON.parse(localStorage.getItem('notes'));
-        console.log(notes.value)
-    }
-
+  notes.value = JSON.parse(localStorage.getItem("notes"));
+  console.log(notes.value);
+}
 </script>
-<style>
-
-</style>
-
+<style></style>
