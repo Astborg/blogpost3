@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "sortablejs": "^1.15.0",
+    "sortablejs-vue3": "^1.2.3",
     "vue": "^3.2.13",
-    "vue-draggable-next": "^2.1.1",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

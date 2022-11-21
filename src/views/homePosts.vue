@@ -18,29 +18,28 @@
   </div>
   <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
-
     <div v-if="notes.length">
-      <draggable @start="drag=true" @end="drag=false" group="my-group">
-        <div
-          v-for="(note, index) in notes"
-          :key="note.id"
-          class="border-2 border-slate-100 rounded-3xl hover:border-red-400"
-          @click="selectedIndex = index"
+        <Sortable :list="notes" item-key="id" tag="div">
+        <template #item="{ element, index }" >
+            <div
+          class="draggable border-2 border-slate-100 rounded-3xl hover:border-red-400"
+          :key="index"
           >
           <div class="relative flex flex-col m-0 justify-around cursor-pointer">
             <button
               class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full hover:bg-red-400 p-2.5"
-              @click="deleteBtn(note)"
+              @click="deleteBtn(element)"
             >x</button>
-            <img class="w-24 h-24 p-3.5 rounded-full" :src="note.img" />
-            <p class="text-xs text-right pr-3.5">{{ note.writer }}</p>
-            <p class="text-lg font-bold">{{ note.headline }}</p>
+            <img class="w-24 h-24 p-3.5 rounded-full" :src="element.img" />
+            <p class="text-xs text-right pr-3.5">{{ element.writer }}</p>
+            <p class="text-lg font-bold">{{ element.headline }}</p>
             <p @click="showModal = true" class="text-left p-3.5 text-sm">
-              {{ note.text }}
+              {{ element.text }}
             </p>
           </div>
         </div>
-      </draggable>
+        </template>
+        </Sortable>
     </div>
     <div v-else class="text-5xl">Welcome Write A New Post!</div>
   </div>
@@ -48,7 +47,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { draggable } from "vuedraggable";
+import { Sortable } from "sortablejs-vue3"
 
 const notes = ref([]);
 const selectedIndex = ref(null);
