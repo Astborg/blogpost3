@@ -33,7 +33,7 @@
             <img class="w-24 h-24 p-3.5 rounded-full" :src="element.img" />
             <p class="text-xs text-right pr-3.5">{{ element.writer }}</p>
             <p class="text-lg font-bold">{{ element.headline }}</p>
-            <p @click="showModal = true" class="text-left p-3.5 text-sm">
+            <p @click="updateValues(index)" class="text-left p-3.5 text-sm">
               {{ element.text }}
             </p>
           </div>
@@ -53,6 +53,10 @@ const notes = ref([]);
 const selectedIndex = ref(null);
 const showModal = ref(false);
 
+const updateValues = (index) => {
+  selectedIndex.value = index
+  showModal.value = true
+}
 notes.value = JSON.parse(localStorage.getItem("notes"));
 
 function deleteBtn(note) {
