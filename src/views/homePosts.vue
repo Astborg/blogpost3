@@ -20,7 +20,7 @@
   </div>
   <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
-    <input type="text" v-model="search" placeholder="Search in blogposts..." class="border-2 rounded-l p-0.5">
+    <input type="text" v-model="search" placeholder="Search in blogposts..." class=" border-2 rounded-l p-1">
     <br>
     <br>
     <div v-if="notes.length">
@@ -32,7 +32,7 @@
           >
           <div class="relative flex flex-col m-0 justify-around cursor-pointer">
             <button
-              class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full hover:bg-red-400 p-2.5"
+              class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full flex m-1 hover:bg-red-400 hover:flex"
               @click="deleteBtn(element)"
             >x</button>
             <img class="w-24 h-24 p-3.5 rounded-full" :src="element.img" />

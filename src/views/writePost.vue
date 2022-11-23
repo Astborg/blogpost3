@@ -2,18 +2,18 @@
   <div>
     <form class="w-6/12 text-left m-auto flex flex-col ">
       <label for="writer">Writer name: </label>
-      <input v-model="newWriter" type="text" max="500" class="border border-gray-200 rounded-l focus:outline-none" placeholder="writer name.." />
+      <input v-model="newWriter" type="text" max="500" class="p-2 border border-gray-200 rounded-l focus:outline-none" placeholder="writer name.." />
       <br />
       <label for="img">Select image:</label>
       <input
         type="text"
         id="img"
-        name="img" v-model="newImg" class="border border-gray-200 rounded-l focus:outline-none" placeholder="select img..">
+        name="img" v-model="newImg" class="p-2 border border-gray-200 rounded-l focus:outline-none" placeholder="select img..">
       <br />
       <label for="headline">Headline </label>
-      <input v-model="newHeadline" type="text" max="500" class=" border border-gray-200 rounded-l focus:outline-none" placeholder="headline.." />
+      <input v-model="newHeadline" type="text" max="500" class="p-2 border border-gray-200 rounded-l focus:outline-none" placeholder="headline.." />
       <label>Your blogtext: </label>
-      <textarea v-model="newNote" name="" id="" cols="20" rows="20" class="border border-gray-200 rounded-l focus:outline-none" placeholder="write your blogtext.."></textarea>
+      <textarea v-model="newNote" name="" id="" cols="20" rows="20" class="p-2 border border-gray-200 rounded-l focus:outline-none" placeholder="write your blogtext.."></textarea>
       <button type="submit" @click="addNote" class="bg-red-400 hover:bg-red-300 p-1.5 outline-none mb-5">
         Post blog
       </button>
