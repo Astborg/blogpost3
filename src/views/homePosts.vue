@@ -32,9 +32,10 @@
           >
           <div class="relative flex flex-col m-0 justify-around cursor-pointer">
             <button
-              class="absolute top-0 right-0 w-5 h-5 cursor-pointer rounded-full flex m-1 hover:bg-red-400 hover:flex"
+              class="absolute top-1 right-1 w-5 h-5 cursor-pointer 
+              rounded-full flex m-1 items-center hover:bg-red-400"
               @click="deleteBtn(element)"
-            >x</button>
+            ><span class="ml-1.5">x</span></button>
             <img class="w-24 h-24 p-3.5 rounded-full" :src="element.img" />
             <p class="text-xs text-right pr-3.5">{{ element.writer }}</p>
             <p class="text-lg font-bold">{{ element.headline }}</p>
