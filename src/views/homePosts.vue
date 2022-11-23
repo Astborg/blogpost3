@@ -2,12 +2,14 @@
   <div>
     <div v-if="showModal" @click="showModal = false">
       <div
-        class="relative w-screen h-screen bg-black opacity-75 z-10 flex cursor-pointer items-center justify-center"
+        class="relative w-screen h-screen bg-black opacity-75 z-10 
+        flex cursor-pointer items-center justify-center"
       >
         <div v-for="(note, index) in notes" :key="note.id" class="">
           <div
             v-if="selectedIndex === index"
-            class="bg-white items-center justify-center opacity-100 p-8 m-20 rounded-xl"
+            class="bg-white items-center justify-center opacity-100 p-8 
+            m-20 rounded-xl"
           >
             <p class="text-center font-bold text-3xl">{{ note.headline }}</p>
             <p class="font-semibold text-2xl">{{ note.text }}</p>
@@ -18,8 +20,11 @@
   </div>
   <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
+    <input type="text" v-model="search" placeholder="Search in blogposts..." class="border-2 p-0.5">
+    <br>
+    <br>
     <div v-if="notes.length">
-        <Sortable :list="notes" item-key="id" tag="div">
+        <Sortable :list="filteredPosts()" item-key="id" tag="div">
         <template #item="{ element, index }" >
             <div
           class="draggable border-2 border-slate-100 rounded-3xl hover:border-red-400"
@@ -52,7 +57,16 @@ import { Sortable } from "sortablejs-vue3"
 const notes = ref([]);
 const selectedIndex = ref(null);
 const showModal = ref(false);
+const search = ref('')
 
+function filteredPosts(){
+    if(!search.value){
+        return notes.value
+    }else {
+        return notes.value.filter(note => note.text.toLowerCase().includes(search.value.toLowerCase()))
+    }
+    
+}
 const updateValues = (index) => {
   selectedIndex.value = index
   showModal.value = true
