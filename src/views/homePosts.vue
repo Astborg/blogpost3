@@ -20,7 +20,7 @@
   </div>
   <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
-    <input type="text" v-model="search" placeholder="Search in blogposts..." class="border-2 p-0.5">
+    <input type="text" v-model="search" placeholder="Search in blogposts..." class="border-2 rounded-l p-0.5">
     <br>
     <br>
     <div v-if="notes.length">
@@ -47,6 +47,7 @@
         </Sortable>
     </div>
     <div v-else class="text-5xl">Welcome Write A New Post!</div>
+    <div class=""> {{ noPosts }}</div> 
   </div>
 </template>
 
@@ -58,14 +59,17 @@ const notes = ref([]);
 const selectedIndex = ref(null);
 const showModal = ref(false);
 const search = ref('')
+const noPosts = 'No blog posts for this search. Search again!'
+
 
 function filteredPosts(){
     if(!search.value){
         return notes.value
-    }else {
+    }else if(!search.value.includes(search.value.toLowerCase())) {
+        console.log(noPosts) 
+    } else {
         return notes.value.filter(note => note.text.toLowerCase().includes(search.value.toLowerCase()))
     }
-    
 }
 const updateValues = (index) => {
   selectedIndex.value = index
