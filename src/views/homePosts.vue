@@ -47,7 +47,8 @@
         </Sortable>
     </div>
     <div v-else class="text-5xl">Welcome Write A New Post!</div>
-    <div class=""> {{ noPosts }}</div> 
+    <div class="" v-if="!filteredPosts().length">
+    <p>No blog posts for this search. Search again!</p></div> 
   </div>
 </template>
 
@@ -59,17 +60,15 @@ const notes = ref([]);
 const selectedIndex = ref(null);
 const showModal = ref(false);
 const search = ref('')
-const noPosts = 'No blog posts for this search. Search again!'
 
 
 function filteredPosts(){
     if(!search.value){
         return notes.value
-    }else if(!search.value.includes(search.value.toLowerCase())) {
-        console.log(noPosts) 
-    } else {
+    }else{
         return notes.value.filter(note => note.text.toLowerCase().includes(search.value.toLowerCase()))
-    }
+    
+}
 }
 const updateValues = (index) => {
   selectedIndex.value = index
