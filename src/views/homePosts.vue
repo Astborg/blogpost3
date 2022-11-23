@@ -47,7 +47,7 @@
         </Sortable>
     </div>
     <div v-else class="text-5xl">Welcome Write A New Post!</div>
-    <div class="" v-if="!filteredPosts().length">
+    <div class="" v-if="search&&!filteredPosts().length">
     <p>No blog posts for this search. Search again!</p></div> 
   </div>
 </template>
