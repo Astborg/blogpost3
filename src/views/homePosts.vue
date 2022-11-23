@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="w-6/12 text-center m-auto">
+  <div class="w-6/12 text-center m-auto pb-16">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
     <input type="text" v-model="search" placeholder="Search in blogposts..." class="focus:outline-none border-2 rounded-l p-1">
     <br>
@@ -27,7 +27,7 @@
         <Sortable :list="filteredPosts()" item-key="id" tag="div">
         <template #item="{ element, index }" >
             <div
-          class="draggable border-2 border-slate-100 rounded-3xl hover:border-red-400"
+          class="draggable border-2 border-slate-100 rounded-3xl p-4 hover:border-red-400"
           :key="index"
           >
           <div class="relative flex flex-col m-0 justify-around cursor-pointer">
