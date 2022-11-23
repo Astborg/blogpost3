@@ -20,7 +20,7 @@
   </div>
   <div class="w-6/12 text-center m-auto">
     <h1 class="text-4xl font-bold text-indigo-500 m-5">Blog Posts</h1>
-    <input type="text" v-model="search" placeholder="Search in blogposts..." class=" border-2 rounded-l p-1">
+    <input type="text" v-model="search" placeholder="Search in blogposts..." class="focus:outline-none border-2 rounded-l p-1">
     <br>
     <br>
     <div v-if="notes.length">
